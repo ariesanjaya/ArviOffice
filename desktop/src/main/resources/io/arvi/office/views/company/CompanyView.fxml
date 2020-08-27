@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.arvi.office.views.company.CompanyView">
+   <children>
+      <HBox id="hbox-title" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PERUSAHAAN">
+               <HBox.margin>
+                  <Insets left="12.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <VBox id="border-base" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+              <tabs>
+                <Tab text="Info">
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="166.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="240.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="90.0" vgrow="NEVER" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="31.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="31.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="31.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Perusahaan :   " GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keterangan :   " GridPane.rowIndex="2" GridPane.valignment="TOP">
+                                 <GridPane.margin>
+                                    <Insets top="8.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tahun Pajak :   " GridPane.rowIndex="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N.P.W.P :   " GridPane.rowIndex="4" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No P.K.P :   " GridPane.rowIndex="5" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No Pengesahan P.K.P :   " GridPane.rowIndex="6" />
+                              <Button id="button-base" fx:id="companySaveButton" mnemonicParsing="false" text="Simpan" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                                 <GridPane.margin>
+                                    <Insets left="4.0" top="4.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <TextField fx:id="companyNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextArea fx:id="companyDescriptionTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="4.0" top="4.0" />
+                                 </GridPane.margin>
+                              </TextArea>
+                              <ComboBox fx:id="taxYearComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="taxIdTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="taxResponsibleIdTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <DatePicker fx:id="taxResponsibleDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                     </content>
+                </Tab>
+                <Tab text="Cabang">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <StackPane>
+                                 <children>
+                                    <HBox fx:id="newBox" prefHeight="34.0" prefWidth="200.0" spacing="8.0">
+                                       <children>
+                                          <Button id="button-base" fx:id="branchNewButton" mnemonicParsing="false" text="New" />
+                                          <Button id="button-base" fx:id="branchEditButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Edit" />
+                                          <Button id="button-base" fx:id="branchRefreshButton" layoutX="98.0" layoutY="10.0" mnemonicParsing="false" text="Refresh" />
+                                       </children>
+                                    </HBox>
+                                    <HBox fx:id="saveBox" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="200.0" spacing="8.0">
+                                       <children>
+                                          <Button id="button-base" fx:id="branchSaveButton" mnemonicParsing="false" text="Save" />
+                                          <Button id="button-base" fx:id="branchCancelButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Cancel" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </StackPane>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kode Cabang :   " />
+                                    <Text layoutX="101.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Cabang :   " GridPane.rowIndex="1" />
+                                    <Text layoutX="101.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alamat :   " GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kecamatan :   " GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kota :   " GridPane.columnIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No Telpon :   " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <TextField fx:id="branchIdTextField" GridPane.columnIndex="1" />
+                                    <TextField fx:id="branchNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="branchDistrictTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="branchAddressTextField" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+                                    <TextField fx:id="branchCityTextField" GridPane.columnIndex="3" />
+                                    <TextField fx:id="branchPhoneTextField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <CheckBox fx:id="branchActiveCheckBox" mnemonicParsing="false" text="Aktif" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                              <TableView fx:id="branchTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="branchIdColumn" prefWidth="117.0" text="Kode Cabang" />
+                                    <TableColumn fx:id="branchNameColumn" minWidth="140.0" prefWidth="240.0" text="Nama Cabang" />
+                                    <TableColumn fx:id="branchActiveColumn" minWidth="45.0" prefWidth="65.0" text="Aktif" />
+                                    <TableColumn fx:id="branchAddressColumn" prefWidth="300.0" text="Alamat" />
+                                    <TableColumn fx:id="branchPhoneColumn" prefWidth="75.0" text="No Telpon" />
+                                </columns>
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </TableView>
+                           </children>
+                           <padding>
+                              <Insets top="12.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+         <VBox.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+         </VBox.margin>
+      </VBox>
+      <HBox id="footer" prefHeight="100.0" prefWidth="200.0" />
+   </children>
+</VBox>

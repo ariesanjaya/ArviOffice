@@ -1,0 +1,30 @@
+#hbox-title {
+    -fx-pref-height : 34;
+    -fx-alignment : center-left;
+    -fx-border-style : hidden hidden solid hidden;
+    -fx-border-width : 4;
+    -fx-border-color : green;
+}
+
+#stackpane-button {
+    -fx-spacing : 8;
+    -fx-pref-height : 38;
+}
+
+#button-base {
+    -fx-pref-width : 80;
+    -fx-pref-height : 26;
+}
+
+#border-base {
+    -fx-padding : 12 12 12 12;
+    -fx-border-width : 2;
+    -fx-border-color : green;
+}
+
+#footer {
+    -fx-pref-height : 26;
+    -fx-border-style : solid hidden hidden hidden;
+    -fx-border-width : 3;
+    -fx-border-color : green;
+}

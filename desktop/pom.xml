@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>arvi-parent</artifactId>
+		<groupId>io.arvi.office</groupId>
+		<version>1.0</version>
+	</parent>
+
+	<groupId>io.arvi.office</groupId>
+	<artifactId>desktop</artifactId>
+	<version>1.0</version>
+
+	<name>desktop</name>
+
+	<properties>
+		<javafx.version>11.0.2</javafx.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>de.saxsys</groupId>
+				<artifactId>mvvmfx-parent</artifactId>
+				<version>1.8.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+		
+	<dependencies>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-base</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-media</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.saxsys</groupId>
+			<artifactId>mvvmfx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.saxsys</groupId>
+			<artifactId>mvvmfx-cdi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.weld.se</groupId>
+			<artifactId>weld-se-core</artifactId>
+			<version>3.0.6.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss</groupId>
+			<artifactId>jandex</artifactId>
+			<version>2.0.5.Final</version>
+		</dependency>
+		<dependency>
+	        <groupId>org.jboss.resteasy</groupId>
+	        <artifactId>resteasy-client</artifactId>
+	        <version>3.0.14.Final</version>
+	    </dependency>
+		
+		<dependency>
+            <groupId>io.reactivex.rxjava2</groupId>
+            <artifactId>rxjavafx</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.reactivex.rxjava2</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>2.2.16</version>
+        </dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		
+		<plugins>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>0.0.4</version>
+				<configuration>
+					<vendor>Arie Sanjaya</vendor>
+					<mainClass>io.arvi.office.App</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

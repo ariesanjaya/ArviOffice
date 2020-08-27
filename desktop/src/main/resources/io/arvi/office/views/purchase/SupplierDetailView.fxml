@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.arvi.office.views.purchase.SupplierDetailView">
+   <children>
+      <HBox id="hbox-title" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DETAIL PEMASOK">
+               <HBox.margin>
+                  <Insets left="12.0" right="12.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <StackPane id="stackpane-button" prefHeight="150.0" prefWidth="200.0">
+         <VBox.margin>
+            <Insets left="12.0" right="12.0" />
+         </VBox.margin>
+         <children>
+            <HBox fx:id="newBox" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+               <children>
+                  <Button id="button-base" fx:id="newButton" mnemonicParsing="false" text="New" />
+                  <Button id="button-base" fx:id="openButton" layoutX="10.0" layoutY="16.0" mnemonicParsing="false" text="Open" />
+               </children>
+            </HBox>
+            <HBox fx:id="saveBox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+               <children>
+                  <Button id="button-base" fx:id="saveButton" mnemonicParsing="false" text="Save" />
+                  <Button id="button-base" fx:id="cancelButton" layoutX="10.0" layoutY="16.0" mnemonicParsing="false" text="Cancel" />
+                  <Button id="button-base" fx:id="deleteButton" layoutX="98.0" layoutY="16.0" mnemonicParsing="false" text="Delete" />
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+      <VBox id="border-base">
+         <VBox.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" />
+         </VBox.margin>
+         <children>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="160.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kode Pemasok :   " />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Pemasok :   " GridPane.columnIndex="2" />
+                  <Text fx:id="supplierIdText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+                  <Text fx:id="supplierNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <VBox id="border-base" layoutX="22.0" layoutY="82.0" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" />
+         </VBox.margin>
+         <children>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+              <tabs>
+                <Tab text="Detail">
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="136.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kode Pemasok :   " />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Pemasok :   " GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keterangan :   " GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departemen :   " GridPane.columnIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alamat :   " GridPane.rowIndex="5" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kelurahan :   " GridPane.rowIndex="6" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kota :   " GridPane.rowIndex="7" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No. Telpon :   " GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <TextField fx:id="supplierIdTextField" GridPane.columnIndex="1" />
+                              <TextField fx:id="supplierNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextArea fx:id="descriptionTextField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </GridPane.margin>
+                              </TextArea>
+                              <ListView fx:id="departmentListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowSpan="3">
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </GridPane.margin>
+                              </ListView>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="departmentTextField" />
+                                    <Button fx:id="departmentAddButton" minWidth="-Infinity" mnemonicParsing="false" prefWidth="29.0" text="+" />
+                                    <Button fx:id="departmentDeleteButton" layoutX="165.0" layoutY="12.0" minWidth="-Infinity" mnemonicParsing="false" prefWidth="29.0" text="-" />
+                                 </children>
+                              </HBox>
+                              <CheckBox fx:id="activeCheckBox" mnemonicParsing="false" text="Aktif" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="addressTextField" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                              <TextField fx:id="districtTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <TextField fx:id="cityTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <TextField fx:id="phoneTextField" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                           </children>
+                           <padding>
+                              <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                </Tab>
+                <Tab text="Kontak">
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="190.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="190.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="200.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="34.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="2">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+                                       <children>
+                                          <Button id="button-base" mnemonicParsing="false" text="New" />
+                                          <Button id="button-base" layoutX="10.0" layoutY="12.0" mnemonicParsing="false" text="Edit" />
+                                          <Button id="button-base" layoutX="98.0" layoutY="12.0" mnemonicParsing="false" text="Delete" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </StackPane>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kode Kontak :   " GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Kontak :   " GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jabatan :   " GridPane.rowIndex="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departemen :   " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No Telpon :   " GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <ComboBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <CheckBox mnemonicParsing="false" text="Aktif" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="5" GridPane.rowIndex="4">
+                                <columns>
+                                  <TableColumn text="Kode" />
+                                  <TableColumn prefWidth="200.0" text="Nama Kontak" />
+                                    <TableColumn prefWidth="140.0" text="Jabatan" />
+                                    <TableColumn prefWidth="140.0" text="No Telpon" />
+                                    <TableColumn prefWidth="120.0" text="Departemen" />
+                                    <TableColumn prefWidth="60.0" text="Aktif" />
+                                </columns>
+                                 <GridPane.margin>
+                                    <Insets top="8.0" />
+                                 </GridPane.margin>
+                              </TableView>
+                           </children>
+                           <padding>
+                              <Insets bottom="12.0" left="12.0" right="12.0" top="6.0" />
+                           </padding>
+                        </GridPane>
+                     </content>
+                </Tab>
+                  <Tab text="Bank/Pajak">
+                     <content>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="54.0">
+                           <children>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="180.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="36.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bank / Pajak" GridPane.columnSpan="2" GridPane.halignment="LEFT">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bank :   " GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cabang :   " GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No Rek :   " GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Atas nama :   " GridPane.rowIndex="4" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="N.P.W.P :   " GridPane.rowIndex="5" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="No P.K.P :   " GridPane.rowIndex="6" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tgl P.K.P :   " GridPane.rowIndex="7" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                 </children>
+                              </GridPane>
+                              <GridPane HBox.hgrow="ALWAYS">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="36.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="36.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pajak Pembelian">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                    <Text layoutX="10.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pajak Penjualan" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                    <CheckBox mnemonicParsing="false" text="Terkena Pajak" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="20.0" />
+                                       </GridPane.margin>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" text="Harga Termasuk Pajak" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="20.0" />
+                                       </GridPane.margin>
+                                    </CheckBox>
+                                    <CheckBox layoutX="10.0" layoutY="82.0" mnemonicParsing="false" text="Terkena Pajak" GridPane.rowIndex="4">
+                                       <GridPane.margin>
+                                          <Insets left="20.0" />
+                                       </GridPane.margin>
+                                    </CheckBox>
+                                    <CheckBox layoutX="10.0" layoutY="148.0" mnemonicParsing="false" text="Harga Termasuk Pajak" GridPane.rowIndex="5">
+                                       <GridPane.margin>
+                                          <Insets left="20.0" />
+                                       </GridPane.margin>
+                                    </CheckBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                           </padding>
+                        </HBox>
+                     </content>
+                  </Tab>
+                  <Tab text="Pembelian">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="36.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="20.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="240.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="36.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pembelian" GridPane.halignment="LEFT">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Limit Transaksi :   " GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Limit Hutang :   " GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Akun :   " GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jumlah Hutang :   " GridPane.rowIndex="4" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mata Uang" GridPane.columnIndex="5">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Text>
+                                    <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.rowSpan="4">
+                                      <columns>
+                                        <TableColumn prefWidth="176.0" text="Mata Uang" />
+                                        <TableColumn prefWidth="60.0" text="Aktif" />
+                                      </columns>
+                                       <GridPane.margin>
+                                          <Insets bottom="2.0" top="2.0" />
+                                       </GridPane.margin>
+                                    </TableView>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                                       <children>
+                                          <ComboBox prefWidth="170.0" />
+                                          <Button minWidth="29.0" mnemonicParsing="false" text="+" />
+                                          <Button layoutX="160.0" layoutY="10.0" minWidth="29.0" mnemonicParsing="false" text="-" />
+                                       </children>
+                                    </HBox>
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" text="+" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" text="+" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+      <HBox id="footer" prefHeight="100.0" prefWidth="200.0" />
+   </children>
+</VBox>

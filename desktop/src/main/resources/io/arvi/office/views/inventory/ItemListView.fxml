@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.arvi.office.views.inventory.ItemListView">
+   <children>
+      <HBox id="hbox-title" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DAFTAR BARANG">
+               <HBox.margin>
+                  <Insets left="12.0" right="12.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <HBox id="stackpane-button" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="8.0">
+         <VBox.margin>
+            <Insets left="12.0" right="12.0" />
+         </VBox.margin>
+         <children>
+            <Button id="button-base" fx:id="newButton" mnemonicParsing="false" text="New" />
+            <Button id="button-base" fx:id="editButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Edit" />
+            <Button id="button-base" fx:id="refreshButton" layoutX="57.0" layoutY="10.0" mnemonicParsing="false" text="Refresh" />
+         </children>
+      </HBox>
+      <VBox id="border-base" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" />
+         </VBox.margin>
+         <children>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Barcode :   " />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Barang :   " GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pemasok Utama :   " GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Merk :   " GridPane.columnIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Grup :   " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="barcodeTextField" GridPane.columnIndex="1" />
+                  <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="brandBox" prefWidth="150.0" GridPane.columnIndex="3" />
+                  <ComboBox fx:id="groupBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="activeCheckBox" mnemonicParsing="false" text="Aktif" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+            <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="itemIdColumn" minWidth="100.0" prefWidth="120.0" text="Kode Barang" />
+                <TableColumn fx:id="barcodeColumn" minWidth="120.0" prefWidth="140.0" text="Barcode" />
+                  <TableColumn fx:id="nameColumn" minWidth="240.0" prefWidth="300.0" text="Nama Barang" />
+                  <TableColumn fx:id="unitColumn" minWidth="140.0" prefWidth="140.0" text="Satuan" />
+              </columns>
+               <VBox.margin>
+                  <Insets top="12.0" />
+               </VBox.margin>
+            </TableView>
+         </children>
+      </VBox>
+      <HBox id="footer" prefHeight="100.0" prefWidth="200.0" />
+   </children>
+</VBox>
