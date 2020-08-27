@@ -20,8 +20,8 @@ public class MainVerticle extends AbstractVerticle {
 
         Router router = Router.router(vertx);
 
-        
-        router.get("/company").handler(this::companyHandler);
+        router.route("/api*").handler(BodyHandler.class);
+        router.get("/api/company").handler(this::companyGetHandler);
 
         server.requestHandler(router)
             .listen(8080, ar -> {
@@ -35,7 +35,7 @@ public class MainVerticle extends AbstractVerticle {
         return promise.future();
     }
 
-    private void companyHandler(RoutingContext context) {
+    private void companyGetHandler(RoutingContext context) {
         context.response()
             .putHeader("content-type", "text/html")
             .end("Hello World");
