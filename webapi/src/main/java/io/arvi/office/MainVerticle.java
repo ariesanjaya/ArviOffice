@@ -6,6 +6,7 @@ import io.vertx.core.Promise;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.handler.BodyHandler;
 
 public class MainVerticle extends AbstractVerticle {
 
@@ -20,7 +21,7 @@ public class MainVerticle extends AbstractVerticle {
 
         Router router = Router.router(vertx);
 
-        router.route("/api*").handler(BodyHandler.class);
+        router.route("/api*").handler(BodyHandler.create());
         router.get("/api/company").handler(this::companyGetHandler);
 
         server.requestHandler(router)
