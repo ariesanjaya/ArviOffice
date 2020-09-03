@@ -12,7 +12,7 @@ public class MainVerticle extends AbstractVerticle {
 
     @Override
     public void start(Promise<Void> promise) throws Exception {
-        startHttpServer().setHandler(promise);
+        startHttpServer().onComplete(promise);
     }
 
     private Future<Void> startHttpServer() {
@@ -21,8 +21,13 @@ public class MainVerticle extends AbstractVerticle {
 
         Router router = Router.router(vertx);
 
-        router.route("/api*").handler(BodyHandler.create());
+        router.route().handler(BodyHandler.create());
         router.get("/api/company").handler(this::companyGetHandler);
+        router.get("/api/branch").handler(this::branchGetHandler);
+        router.post("/api/branch").handler(this::branchAddHandler);
+        router.put("/api/branch").handler(this::branchUpdateHandler);
+        router.delete("/api/branch").handler(this::branchDeleteHandler);
+        
 
         server.requestHandler(router)
             .listen(8080, ar -> {
@@ -39,8 +44,30 @@ public class MainVerticle extends AbstractVerticle {
     private void companyGetHandler(RoutingContext context) {
         context.response()
             .putHeader("content-type", "text/html")
-            .end("Hello World");
+            .end("Hello Company GET");
     }
 
-    
+    private void branchGetHandler(RoutingContext context) {
+        context.response()
+            .putHeader("content-type", "text/html")
+            .end("Hello Branch GET");
+    }
+
+    private void branchAddHandler(RoutingContext context) {
+        context.response()
+            .putHeader("content-type", "text/html")
+            .end("Hello Branch ADD");
+    }
+
+    private void branchUpdateHandler(RoutingContext context) {
+        context.response()
+            .putHeader("content-type", "text/html")
+            .end("Hello Branch UPDATE");
+    }
+
+    private void branchDeleteHandler(RoutingContext context) {
+        context.response()
+            .putHeader("content-type", "text/html")
+            .end("Hello Branch DELETE");
+    }
 }

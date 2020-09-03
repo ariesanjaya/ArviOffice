@@ -13,7 +13,7 @@
     
     <properties>
         <!-- vert.x properties -->
-        <vertx.version>3.8.5</vertx.version>
+        <vertx.version>3.9.2</vertx.version>
         <vertx.verticle>io.arvi.office.MainVerticle</vertx.verticle>
         <!-- Maven plugins -->
         <vertx-maven-plugin.version>1.0.13</vertx-maven-plugin.version>
