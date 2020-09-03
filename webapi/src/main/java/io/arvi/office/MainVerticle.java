@@ -22,11 +22,19 @@ public class MainVerticle extends AbstractVerticle {
         Router router = Router.router(vertx);
 
         router.route().handler(BodyHandler.create());
+        //Company API Route
         router.get("/api/company").handler(this::companyGetHandler);
+        router.put("/api/company:id").handler(this::companyUpdateHandler);
+        //Branch API Route
         router.get("/api/branch").handler(this::branchGetHandler);
         router.post("/api/branch").handler(this::branchAddHandler);
-        router.put("/api/branch").handler(this::branchUpdateHandler);
-        router.delete("/api/branch").handler(this::branchDeleteHandler);
+        router.put("/api/branch/:id").handler(this::branchUpdateHandler);
+        router.delete("/api/branch/:id").handler(this::branchDeleteHandler);
+        //Employee API Route
+        router.get("/api/employee").handler(this::employeeGetHandler);
+        router.post("/api/employee").handler(this::employeeAddHandler);
+        router.put("/api/employee:id").handler(this::employeeUpdateHandler);
+        router.delete("/api/employee:id").handler(this::employeeDeleteHandler);
         
 
         server.requestHandler(router)
@@ -41,11 +49,21 @@ public class MainVerticle extends AbstractVerticle {
         return promise.future();
     }
 
+    // Company API Handler
+
     private void companyGetHandler(RoutingContext context) {
         context.response()
             .putHeader("content-type", "text/html")
             .end("Hello Company GET");
     }
+
+    private void companyUpdateHandler(RoutingContext context) {
+        context.response()
+            .putHeader("content-type", "text/html")
+            .end("Hello Company UPDATE");
+    }
+    
+    // Branch API Handler
 
     private void branchGetHandler(RoutingContext context) {
         context.response()
@@ -69,5 +87,31 @@ public class MainVerticle extends AbstractVerticle {
         context.response()
             .putHeader("content-type", "text/html")
             .end("Hello Branch DELETE");
+    }
+
+    // Employee API Handler
+
+    private void employeeGetHandler(RoutingContext context) {
+        context.response()
+            .putHeader("content-type", "text/html")
+            .end("Hello Employee GET");
+    }
+
+    private void employeeAddHandler(RoutingContext context) {
+        context.response()
+            .putHeader("content-type", "text/html")
+            .end("Hello Employee ADD");
+    }
+
+    private void employeeUpdateHandler(RoutingContext context) {
+        context.response()
+            .putHeader("content-type", "text/html")
+            .end("Hello Employee UPDATE");
+    }
+
+    private void employeeDeleteHandler(RoutingContext context) {
+        context.response()
+            .putHeader("content-type", "text/html")
+            .end("Hello Employee DELETE");
     }
 }
