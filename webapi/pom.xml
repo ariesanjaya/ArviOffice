@@ -17,8 +17,8 @@
         <vertx.verticle>io.arvi.office.MainVerticle</vertx.verticle>
         <!-- Maven plugins -->
         <vertx-maven-plugin.version>1.0.13</vertx-maven-plugin.version>
-        <maven.compiler.source>1.8</maven.compiler.source>        
-        <maven.compiler.target>1.8</maven.compiler.target> 
+        <!--<maven.compiler.source>1.8</maven.compiler.source>-->        
+        <!--<maven.compiler.target>1.8</maven.compiler.target>--> 
     </properties>
     
     <dependencyManagement>
@@ -41,10 +41,56 @@
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-pg-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-service-proxy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-codegen</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                <source>11</source>
+                <target>11</target>
+                <useIncrementalCompilation>false</useIncrementalCompilation>
+            
+                <annotationProcessors>
+                    <annotationProcessor>io.vertx.codegen.CodeGenProcessor</annotationProcessor>
+                </annotationProcessors>
+                <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
+                <compilerArgs>
+                    <arg>-AoutputDirectory=${project.basedir}/src/main</arg>
+                </compilerArgs>            
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                <filesets>
+                    <fileset>
+                        <directory>${project.basedir}/src/main/generated</directory>
+                    </fileset>
+                </filesets>
+                </configuration>
+            </plugin>
+            <!--<plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>vertx-maven-plugin</artifactId>
                 <version>${vertx-maven-plugin.version}</version>
@@ -60,7 +106,7 @@
                 <configuration>
                     <redeploy>true</redeploy>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 
