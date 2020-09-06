@@ -9,14 +9,14 @@ CREATE TABLE IF NOT EXISTS company(
     "tax_responsible_start_date" DATE NOT NULL DEFAULT CURRENT_DATE,
   
     "version" INTEGER DEFAULT 1,
-    "updated_date" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "updated_date" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     "updated_by" VARCHAR(32),
     "deleted" BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS branch(
     "branch_id" VARCHAR(128) PRIMARY KEY,
-    "company_id" VARCHAR(128) NOT NULL,
+    "company_id" INTEGER NOT NULL,
     "name" VARCHAR(48),
     "address" VARCHAR(128),
     "city" VARCHAR(48),
@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS branch(
     "active" BOOLEAN NOT NULL DEFAULT TRUE,
     
     "version" INTEGER DEFAULT 1,
-    "created_date" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "created_date" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     "created_by" VARCHAR(32),
-    "updated_date" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    "updated_date" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     "updated_by" VARCHAR(32),
     "deleted" BOOLEAN DEFAULT FALSE,
     CONSTRAINT fk_branch_company

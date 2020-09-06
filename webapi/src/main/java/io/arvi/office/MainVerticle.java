@@ -1,5 +1,7 @@
 package io.arvi.office;
 
+import java.time.ZoneId;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
@@ -71,7 +73,6 @@ public class MainVerticle extends AbstractVerticle {
         router.put("/api/employee:id").handler(this::employeeUpdateHandler);
         router.delete("/api/employee:id").handler(this::employeeDeleteHandler);
         
-
         server.requestHandler(router)
             .listen(8080, ar -> {
                 if (ar.succeeded()) {
@@ -92,20 +93,29 @@ public class MainVerticle extends AbstractVerticle {
             .execute(ar -> {
                 if (ar.succeeded()) {
                     RowSet<Row> result = ar.result();
-                    JsonObject obj = new JsonObject();
+                    JsonObject json = new JsonObject();
+                    
+                    
                     for (Row row : result) {
-                        obj.put(row.getColumnName(0), row.getInteger(0));
-                        obj.put(row.getColumnName(1), row.getString(1));
-                        obj.put(row.getColumnName(2), row.getShort(2));
-                        //obj.put(row.getColumnName(3), row.getLocalDate(3));
-                        obj.put(row.getColumnName(4), row.getString(4));
-                        obj.put(row.getColumnName(5), row.getString(5));
-                        
+                    	json.put("company_id", row.getInteger("company_id"));
+                    	json.put("name", row.getString("name"));
+                    	json.put("start_year", row.getShort("start_year"));
+                    	json.put("tax_date", row.getLocalDate("tax_date").atStartOfDay(ZoneId.of("UTC")).toInstant());
+                    	json.put("start_year", row.getShort("start_year"));
+                    	json.put("tax_prefix_no", row.getString("tax_prefix_no"));
+                    	json.put("tax_id", row.getString("tax_id"));
+                    	json.put("tax_responsible_id", row.getString("tax_responsible_id"));
+                    	json.put("tax_responsible_start_date", row.getLocalDate("tax_responsible_start_date").atStartOfDay(ZoneId.of("UTC")).toInstant());
+                    	json.put("version", row.getInteger("version"));
+                    	json.put("updated_date", row.getLocalDateTime("updated_date").atZone(ZoneId.of("UTC")).toInstant());
+                    	json.put("updated_by", row.getString("updated_by"));
+                    	json.put("deleted", row.getBoolean("deleted"));
+                    	
                     }
 
                     context.response()
                         .putHeader("content-type", "application/json")
-                        .end(obj.encodePrettily());
+                        .end(json.encodePrettily());
                 }
             });
         
