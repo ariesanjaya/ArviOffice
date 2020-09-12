@@ -1,7 +1,5 @@
 package io.arvi.office;
 
-import java.time.ZoneId;
-
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Promise;
@@ -10,46 +8,12 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
-import io.vertx.pgclient.PgConnectOptions;
-import io.vertx.pgclient.PgPool;
-import io.vertx.sqlclient.PoolOptions;
-import io.vertx.sqlclient.Row;
-import io.vertx.sqlclient.RowSet;
 
 public class MainVerticle extends AbstractVerticle {
 
-    private PgPool dbClient;
-
     @Override
     public void start(Promise<Void> promise) throws Exception {
-        Future<Void> steps = prepareDatabase().compose(v -> startHttpServer());
-        steps.onComplete(promise);
-    }
-
-    private Future<Void> prepareDatabase() {
-        Promise<Void> promise = Promise.promise();
-
-        PgConnectOptions connectOptions = new PgConnectOptions()
-            .setPort(5432)
-            .setHost("localhost")
-            .setDatabase("postgres")
-            .setUser("postgres")
-            .setPassword("admin");
-        
-        PoolOptions poolOptions = new PoolOptions()
-            .setMaxSize(5);
-        
-        dbClient = PgPool.pool(vertx, connectOptions, poolOptions);
-
-        dbClient.getConnection(ar -> {
-            if (ar.failed()) {
-                promise.fail(ar.cause());
-            } else {
-                promise.complete();
-            }
-        });
-
-        return promise.future();
+        startHttpServer().onComplete(promise);
     }
 
     private Future<Void> startHttpServer() {

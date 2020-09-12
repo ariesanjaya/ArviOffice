@@ -1,12 +1,8 @@
 package io.arvi.office.http;
 
-import java.time.ZoneId;
-
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
-import io.vertx.sqlclient.Row;
-import io.vertx.sqlclient.RowSet;
 
 public class CompanyHandler {
 
