@@ -15,10 +15,11 @@ public class HttpServerVerticle extends AbstractVerticle {
 
         Router router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
-        router.get("/").handler(context -> {
-            context.response().putHeader("content-type", "text/html")
-            .end("Hello World");
-        });
+        
+        CompanyHandler companyHandler = new CompanyHandler();
+        companyHandler.setRouter(vertx,router);
+        InventoryHandler inventoryHandler = new InventoryHandler();
+        inventoryHandler.setRouter(router);
 
         server
             .requestHandler(router)
