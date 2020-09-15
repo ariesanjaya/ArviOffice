@@ -1,35 +1,65 @@
+-------------------------------------------------------------
+---- COMPANY TABLES -----
+-------------------------------------------------------------
+
+DROP TABLE IF EXISTS company CASCADE;
+DROP TABLE IF EXISTS branches CASCADE;
+
 CREATE TABLE IF NOT EXISTS company(
-    "company_id" SERIAL PRIMARY KEY,
-    "name" VARCHAR(64) NOT NULL,
-    "start_year" SMALLINT CHECK ("start_year" > 0),
-    "tax_date" DATE NOT NULL,
-    "tax_prefix_no" VARCHAR(48),
-    "tax_id" VARCHAR(36),
-    "tax_responsible_id" VARCHAR(36),
-    "tax_responsible_start_date" DATE NOT NULL,
-
-    "version" INTEGER NOT NULL DEFAULT 1,
-    "updated_date" TIMESTAMP NOT NULL DEFAULT CURRENT_DATE,
-    "updated_by" VARCHAR(32),
-    "deleted" BOOLEAN NOT NULL DEFAULT FALSE 
+    company_id serial PRIMARY KEY,
+    name varchar(64) NOT NULL,
+    start_year smallint,
+    tax_date date,
+    tax_prefix_no varchar(48),
+    tax_id varchar(36),
+    tax_responsible_id varchar(36),
+    tax_responsible_start_date date,
+    
+    version integer NOT NULL DEFAULT 1,
+    updated_date timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_by varchar(32),
+    deleted boolean NOT NULL DEFAULT false
 );
 
-CREATE TABLE IF NOT EXISTS branch(
-    "branch_id" VARCHAR(128) PRIMARY KEY,
-    "company_id" INTEGER,
-    "name" VARCHAR(48),
-    "address" VARCHAR(128),
-    "city" VARCHAR(48),
-    "district" VARCHAR(48),
-    "phone" VARCHAR(24),
-    "active" BOOLEAN NOT NULL DEFAULT TRUE,
-  
-    "version" INTEGER NOT NULL DEFAULT 1,
-    "updated_date" TIMESTAMP NOT NULL DEFAULT CURRENT_DATE,
-    "updated_by" VARCHAR(32),
-    "deleted" BOOLEAN NOT NULL DEFAULT FALSE,
-    CONSTRAINT fk_branch_company
-        FOREIGN KEY(company_id)
-            REFERENCES company(company_id)
+CREATE TABLE IF NOT EXISTS branches(
+    branch_id varchar(64) PRIMARY KEY,
+    company_id integer NOT NULL,
+    name varchar(48),
+    address varchar(256),
+    city varchar(48),
+    district varchar(48),
+    phone varchar(24),
+    active boolean NOT NULL DEFAULT true,
+    
+    version integer NOT NULL DEFAULT 1,
+    created_date timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by varchar(32),
+    updated_date timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_by varchar(32),
+    deleted boolean NOT NULL DEFAULT false,
+    CONSTRAINT fk_branch_company FOREIGN KEY(company_id) 
+        REFERENCES company(company_id) ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
+-------------------------------------------------------------
+---- LEDGER TABLES -----
+-------------------------------------------------------------
+
+DROP TABLE IF EXISTS kurs CASCADE;
+
+CREATE TABLE IF NOT EXISTS kurs(
+    kurs_id varchar(48) PRIMARY KEY,
+    name varchar(64) NOT NULL,
+    description varchar(64) NOT NULL,
+    symbol char(8) NOT NULL,
+    value numeric(18,4) NOT NULL DEFAULT 1,
+    fiskal numeric(18,4) NOT NULL DEFAULT 1,
+    is_default boolean DEFAULT false,
+    
+    version integer NOT NULL DEFAULT 1,
+    created_date timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by varchar(32),
+    updated_date timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_by varchar(32),
+    deleted boolean NOT NULL DEFAULT false
+);
