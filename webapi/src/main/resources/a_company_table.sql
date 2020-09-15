@@ -63,3 +63,5 @@ CREATE TABLE IF NOT EXISTS kurs(
     updated_by varchar(32),
     deleted boolean NOT NULL DEFAULT false
 );
+
+
