@@ -48,6 +48,8 @@ CREATE TABLE IF NOT EXISTS branches(
 DROP TABLE IF EXISTS kurs CASCADE;
 DROP TABLE IF EXISTS account_classifications CASCADE;
 DROP TABLE IF EXISTS account_types CASCADE;
+DROP TABLE IF EXISTS account_types CASCADE;
+DROP TABLE IF EXISTS account CASCADE;
 
 CREATE TABLE IF NOT EXISTS kurs(
     kurs_id varchar(48) PRIMARY KEY,
@@ -91,4 +93,23 @@ CREATE TABLE IF NOT EXISTS account_clasifications(
   	deleted boolean not null default false,
   	constraint fk_account_types_account_classification
   		foreign key(type_id) references account_types(type_id)
+);
+
+CREATE TYPE wealth_type AS ENUM(
+    'real',
+    'nominal'
+);
+
+CREATE TYPE balance_type AS ENUM (
+    'debit',
+    'credit'
+);
+
+CREATE TABLE IF NOT EXISTS accounts(
+    account_id varchar(128) primary key,
+    class_id varchar(128) not null,
+    name varchar(64) not null,
+    value numeric(18,4) not null,
+    wealth_type wealth_type not null,
+    
 );
