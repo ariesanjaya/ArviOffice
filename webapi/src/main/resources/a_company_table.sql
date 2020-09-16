@@ -46,6 +46,8 @@ CREATE TABLE IF NOT EXISTS branches(
 -------------------------------------------------------------
 
 DROP TABLE IF EXISTS kurs CASCADE;
+DROP TABLE IF EXISTS account_classifications CASCADE;
+DROP TABLE IF EXISTS account_types CASCADE;
 
 CREATE TABLE IF NOT EXISTS kurs(
     kurs_id varchar(48) PRIMARY KEY,
@@ -64,4 +66,29 @@ CREATE TABLE IF NOT EXISTS kurs(
     deleted boolean NOT NULL DEFAULT false
 );
 
+CREATE TABLE IF NOT EXISTS account_types(
+  	type_id varchar(48) primary key,
+  	name varchar(128) not null,
+  
+  	version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false
+);
 
+CREATE TABLE IF NOT EXISTS account_clasifications(
+	class_id varchar(48) primary key,
+  	type_id varchar(48) not null, 
+  	name varchar(128) not null,
+  
+  	version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false,
+  	constraint fk_account_types_account_classification
+  		foreign key(type_id) references account_types(type_id)
+);
