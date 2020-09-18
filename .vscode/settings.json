@@ -10,6 +10,16 @@
             "previewLimit": 50,
             "server": "localhost",
             "username": "postgres"
+        },
+        {
+            "previewLimit": 50,
+            "server": "stampy.db.elephantsql.com",
+            "port": 5432,
+            "database": "deshthyx",
+            "driver": "PostgreSQL",
+            "name": "Postgresql Office Remote",
+            "username": "deshthyx",
+            "password": "aw_V2k9_rruZYNNhGwWVpbFHlKp5ugaC"
         }
     ]
 }
