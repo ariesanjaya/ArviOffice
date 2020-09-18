@@ -252,3 +252,71 @@ CREATE TABLE IF NOT EXISTS sales_journal(
   	updated_by varchar(32),
   	deleted boolean not null default false 
 );
+
+-------------------------------------------------------------
+---- INVENTORY TABLES -----
+-------------------------------------------------------------
+
+DROP TABLE IF EXISTS warehouses CASCADE;
+DROP TABLE IF EXISTS item_groups CASCADE;
+DROP TABLE IF EXISTS item_brands CASCADE;
+DROP TABLE IF EXISTS items CASCADE;
+
+CREATE TABLE IF NOT EXISTS warehouses(
+    warehouse_id serial PRIMARY KEY,
+    name varchar(128) NOT NULL,
+    active boolean DEFAULT true,
+
+    version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false
+);
+
+CREATE TABLE IF NOT EXISTS item_groups(
+    group_id serial PRIMARY KEY,
+    parent_id integer,
+    name varchar(64) NOT NULL,
+    active boolean DEFAULT true,
+
+    version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false,
+    CONSTRAINT fk_item_groups_parent 
+        FOREIGN KEY(parent_id) REFERENCES item_groups(group_id)
+);
+
+CREATE TABLE IF NOT EXISTS item_brands(
+    brand_id serial PRIMARY KEY,
+    parent_id integer,
+    name varchar(64) NOT NULL,
+    active boolean DEFAULT true,
+
+    version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false,
+    CONSTRAINT fk_item_brands_parent 
+        FOREIGN KEY(parent_id) REFERENCES item_brands(brand_id)
+);
+
+CREATE TABLE IF NOT EXISTS items(
+    item_id bigserial PRIMARY KEY,
+    name varchar(64) NOT NULL,
+    description varchar(128),
+    group_id integer,
+    brand_id integer,
+
+    CONSTRAINT fk_items_item_groups 
+        FOREIGN KEY(group_id) REFERENCES item_groups(group_id) ON UPDATE CASCADE ON DELETE SET NULL,
+    CONSTRAINT fk_items_item_brands 
+        FOREIGN KEY(brand_id) REFERENCES item_brands(brand_id) ON UPDATE CASCADE ON DELETE SET NULL 
+
+);
