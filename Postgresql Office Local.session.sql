@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS company(
 );
 
 CREATE TABLE IF NOT EXISTS branches(
-    branch_id varchar(64) PRIMARY KEY,
+    branch_id serial PRIMARY KEY,
     company_id integer NOT NULL,
     name varchar(48),
     address varchar(256),
@@ -261,6 +261,9 @@ DROP TABLE IF EXISTS warehouses CASCADE;
 DROP TABLE IF EXISTS item_groups CASCADE;
 DROP TABLE IF EXISTS item_brands CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
+DROP TABLE IF EXISTS item_branches CASCADE;
+DROP TABLE IF EXISTS item_units CASCADE;
+
 
 CREATE TABLE IF NOT EXISTS warehouses(
     warehouse_id serial PRIMARY KEY,
@@ -309,14 +312,101 @@ CREATE TABLE IF NOT EXISTS item_brands(
 
 CREATE TABLE IF NOT EXISTS items(
     item_id bigserial PRIMARY KEY,
-    name varchar(64) NOT NULL,
+    name varchar(128) NOT NULL,
+    alias_name varchar(128),
     description varchar(128),
+    item_type varchar(24) NOT NULL,
+    unit_string varchar(36),
     group_id integer,
     brand_id integer,
+    active boolean DEFAULT true,
 
+    purchase_unit varchar(8) NOT NULL,
+    sales_unit varchar(8) NOT NULL,
+
+    supplier_id varchar(128),
+    supplier_barcode varchar(24),
+
+    stock_id varchar(128),
+    base_price_id varchar(128),
+    sales_id varchar(128),
+    sales_return_id varchar(128),
+
+    version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false,
     CONSTRAINT fk_items_item_groups 
         FOREIGN KEY(group_id) REFERENCES item_groups(group_id) ON UPDATE CASCADE ON DELETE SET NULL,
     CONSTRAINT fk_items_item_brands 
         FOREIGN KEY(brand_id) REFERENCES item_brands(brand_id) ON UPDATE CASCADE ON DELETE SET NULL 
 
+);
+
+CREATE TABLE IF NOT EXISTS item_branches(
+    item_id bigint,
+    branch_id integer,
+    
+    version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false,
+    
+    CONSTRAINT fk_item_branches_items FOREIGN KEY(item_id) 
+        REFERENCES items(item_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_item_branches_branches FOREIGN KEY(branch_id) 
+        REFERENCES branches(branch_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS item_units(
+    unit_id serial PRIMARY KEY,
+    item_id integer NOT NULL,
+    barcode varchar(48),
+    name varchar(8),
+    index smallint NOT NULL DEFAULT 0,
+    value double precision, 
+    
+    version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false,
+    
+    CONSTRAINT fk_item_units_items FOREIGN KEY(item_id) 
+        REFERENCES items(item_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS price_level(
+    level_id serial PRIMARY KEY,
+    kurs_id varchar(128),
+    name varchar(64) NOT NULL,
+    active boolean DEFAULT true,
+
+    version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false,
+    
+    CONSTRAINT fk_price_level_kurs FOREIGN KEY(kurs_id) 
+        REFERENCES kurs(kurs_id) ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS item_unit_prices(
+    unit_id integer PRIMARY KEY,
+    warehouse_id integer NOT NULL,
+    level_id varchar(128),
+
+    version integer not null default 1,
+  	created_date timestamptz not null default CURRENT_TIMESTAMP,
+  	created_by varchar(32),
+  	updated_date timestamptz not null default CURRENT_TIMESTAMP,
+  	updated_by varchar(32),
+  	deleted boolean not null default false    
 );
