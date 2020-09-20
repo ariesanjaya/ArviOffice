@@ -38,5 +38,6 @@ public class DatabaseVerticle extends AbstractVerticle {
 
     private void initializeDBService() {
         new CompanyDBService(vertx, client);
+        new BranchDBService(vertx, client);
     }
 }

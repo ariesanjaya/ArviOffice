@@ -10,7 +10,7 @@ public class CompanyHandler {
     
     private Vertx vertx;
 
-    public void setRouter(Vertx vertx, Router router) {
+    public CompanyHandler(Vertx vertx, Router router) {
         this.vertx = vertx;
 
         router.get("/company").handler(this::companyGetHandler);
@@ -34,8 +34,18 @@ public class CompanyHandler {
     }
 
     private void companyUpdateHandler(RoutingContext context) {
-        context.response()
-            .putHeader("content-type", "application/json")
-            .end(new JsonObject().put("hello", "Hello World From COMPANY UPDATE HANDLER").encodePrettily());
+        DeliveryOptions options = new DeliveryOptions().addHeader("action", "update-company");
+        JsonObject body = context.getBodyAsJson();
+        vertx.eventBus().request("database.company", body, options, reply -> {
+
+            if (reply.succeeded()) {
+                
+                context.response()
+                    .putHeader("content-type", "application/json")
+                    .end(reply.result().body().toString());
+            } else {
+                context.fail(reply.cause());
+            }
+        });
     }
 }

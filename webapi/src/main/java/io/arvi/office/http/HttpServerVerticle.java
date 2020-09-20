@@ -16,8 +16,8 @@ public class HttpServerVerticle extends AbstractVerticle {
         Router router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
         
-        CompanyHandler companyHandler = new CompanyHandler();
-        companyHandler.setRouter(vertx,router);
+        new CompanyHandler(vertx,router);
+        new BranchHandler(vertx, router);
         InventoryHandler inventoryHandler = new InventoryHandler();
         inventoryHandler.setRouter(router);
 
